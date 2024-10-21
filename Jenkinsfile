@@ -31,7 +31,10 @@ pipeline {
         stage('Deployment') {
             steps {
                 echo 'Deployment part'
-                sh 'ssh root@192.168.132.209 docker compose up -d'
+                sh 'ssh root@192.168.132.209'
+                sh 'scp docker-compose.yml root@192.168.132.209:/home/'
+                sh 'cd /home/'
+                sh 'docker compose up -d'
             }
         }
     }

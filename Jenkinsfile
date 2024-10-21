@@ -21,6 +21,20 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Image Build') {
+            steps {
+                echo 'Docker Image Build Part'
+                sh 'docker-compose build'
+                sh 'docker-compose push'
+            }
+        }
+        stage('Deployment') {
+            steps {
+                echo 'Deployment part'
+                sh 'ssh root@192.168.132.209'
+                sh 'docker-compose up -d'
+            }
+        }
     }
 }
 

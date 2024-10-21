@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tlakshan470/hello-world:latest
+    container_name: hello-world
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge

@@ -15,16 +15,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Git Merge') {
-            steps {
-                echo 'Merge Part'
-                script {
-                    merge()
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 echo 'Jar File Merge Part'
@@ -40,11 +30,4 @@ void versionCheck() {
         java -version
         mvn -version
     '''
-}
-
-void merge() {
-    sh 'git fetch origin'
-    sh 'git checkout main'
-    sh 'git pull origin main'
-    sh "git merge ${GIT_BRANCH}"
 }

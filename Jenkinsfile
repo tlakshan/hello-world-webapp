@@ -7,18 +7,29 @@ pipeline {
     }
 
     stages {
-        stage('vesion check')  {
-            echo 'Version Checking Part'
-            versionCheck()
+        stage('Version Check')  {
+            steps {
+                echo 'Version Checking Part'
+                script {
+                    versionCheck()
+                }
+            }
         }
 
         stage('Git Merge') {
-            echo 'Merge Part'
-            merge()
+            steps {
+                echo 'Merge Part'
+                script {
+                    merge()
+                }
+            }
         }
+
         stage('Build') {
-            echo 'Jar File Merge Part'
-            sh 'mvn clean package'
+            steps {
+                echo 'Jar File Merge Part'
+                sh 'mvn clean package'
+            }
         }
     }
 }
@@ -35,5 +46,5 @@ void merge() {
     sh 'git fetch origin'
     sh 'git checkout main'
     sh 'git pull origin main'
-    sh 'git merge ${GIT_BRANCH}'
+    sh "git merge ${GIT_BRANCH}"
 }

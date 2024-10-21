@@ -7,27 +7,27 @@ pipeline {
     }
 
     stages {
-        // stage('Version Check')  {
-        //     steps {
-        //         echo 'Version Checking Part'
-        //         script {
-        //             versionCheck()
-        //         }
-        //     }
-        // }
-        // stage('Build') {
-        //     steps {
-        //         echo 'Jar File Merge Part'
-        //         sh 'mvn clean package'
-        //     }
-        // }
-        // stage('Image Build') {
-        //     steps {
-        //         echo 'Docker Image Build Part'
-        //         sh 'docker compose build'
-        //         sh 'docker compose push'
-        //     }
-        // }
+        stage('Version Check')  {
+            steps {
+                echo 'Version Checking Part'
+                script {
+                    versionCheck()
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Jar File Merge Part'
+                sh 'mvn clean package'
+            }
+        }
+        stage('Image Build') {
+            steps {
+                echo 'Docker Image Build Part'
+                sh 'docker compose build'
+                sh 'docker compose push'
+            }
+        }
         stage('Deployment') {
             steps {
                 echo 'Deployment part'

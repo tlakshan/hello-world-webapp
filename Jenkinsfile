@@ -35,7 +35,7 @@ pipeline {
                 // sh 'scp docker-compose.yml root@192.168.132.209:/home/'
                 // sh 'cd /home/'
                 // sh 'docker compose up -d'
-                sh 'ssh root@192.168.132.209 docker compose -f /home/docker-compose.yml up -d'
+                sh 'ssh root@192.168.132.169 docker compose -f /home/docker-compose.yml up -d'
                 // sshagent(['node']) {
                 //     sh '''
                 //     ssh root@192.168.132.209 << EOF
